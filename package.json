@@ -1,0 +1,42 @@
+{
+  "name": "lightroom-controller",
+  "version": "1.0.0",
+  "description": "Control Adobe Lightroom CC using HTTP requests by using the Lightroom External Controller API",
+  "keywords": [
+    "lightroom",
+    "creative-cloud",
+    "controller",
+    "websocket",
+    "plugin",
+    "adobe"
+  ],
+  "homepage": "https://github.com/electerious/lightroom-controller",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/electerious/lightroom-controller.git"
+  },
+  "license": "MIT",
+  "type": "module",
+  "bin": "./bin/index.js",
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "format": "npm run prettier -- --write",
+    "prettier": "prettier --ignore-path .gitignore '**/*.{js,json,md}'",
+    "start": "./bin/index.js",
+    "test": "npm run prettier -- --check && node --test"
+  },
+  "dependencies": {
+    "commander": "^14.0.0",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@ianvs/prettier-plugin-sort-imports": "^4.5.1",
+    "prettier": "^3.6.2",
+    "prettier-plugin-packagejson": "^2.5.18"
+  },
+  "authors": [
+    "Tobias Reich <tobias@electerious.com>"
+  ]
+}

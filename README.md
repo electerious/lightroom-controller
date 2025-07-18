@@ -4,6 +4,8 @@
 
 Control Adobe Lightroom CC using HTTP requests by using the Lightroom External Controller API.
 
+![lightroom-controller](https://github.com/user-attachments/assets/a0fdfe43-35a3-413e-8f77-d0616fcf923d)
+
 > ⚠️ This project is still in development and may not work as expected. Use at your own risk!
 
 > 💡 This project is not affiliated with Adobe Systems Incorporated in any way. It is an independent tool that utilizes the Lightroom External Controller API to provide a simple interface for controlling Lightroom CC.

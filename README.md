@@ -103,6 +103,11 @@ PORT=3000 npx lightroom-controller
 
 The WebSocket URL of your Lightroom instance. Defaults to `ws://127.0.0.1:7682`.
 
+If the port is not available, Lightroom falls back to a different port. The port that it uses will be saved into a `connections.json` file by Lightroom.
+
+Mac: `~/Library/Application Support/Adobe/Lightroom CC/Connections`
+Windows: `AppData\Local\Adobe\Lightroom CC\Connections`
+
 ```bash
 LIGHTROOM_WS_URL=ws://127.0.0.1:7682 npx lightroom-controller
 ```

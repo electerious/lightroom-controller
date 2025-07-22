@@ -20,7 +20,7 @@ const createSocket = (url) => {
     }
   }
 
-  const addListener = (requestId, resolve, reject) => {
+  const addListener = (requestId, resolve, reject, timeout = 5000) => {
     listeners.set(requestId, { resolve, reject })
 
     setTimeout(() => {
@@ -29,19 +29,19 @@ const createSocket = (url) => {
         listeners.get(requestId).reject(error)
         removeListener(requestId)
       }
-    }, 5000)
+    }, timeout)
   }
 
   const removeListener = (requestId) => {
     listeners.delete(requestId)
   }
 
-  const send = (params, message) => {
+  const send = (params, message, timeout) => {
     const request = createRequest(params, message)
     const { requestId } = request
 
     return new Promise((resolve, reject) => {
-      addListener(requestId, resolve, reject)
+      addListener(requestId, resolve, reject, timeout)
 
       ws.send(JSON.stringify(request), (error) => {
         if (error) {
@@ -55,7 +55,7 @@ const createSocket = (url) => {
   const ws = new WebSocket(url)
 
   ws.on('open', async () => {
-    const answer = await send([appName, appVersion, optionalClientGUID], 'register')
+    const answer = await send([appName, appVersion, optionalClientGUID], 'register', 60000)
 
     if (answer.success) {
       resolve(instance)

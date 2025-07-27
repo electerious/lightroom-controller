@@ -1,4 +1,5 @@
 import { createServer } from 'http'
+import { URL } from 'url'
 
 const ok = (response, data) => {
   response.writeHead(200, { 'Content-Type': 'application/json' })
@@ -25,16 +26,28 @@ const createHttpServer = (port) => (socket) => {
 
   const server = createServer(async (request, response) => {
     try {
-      const { url } = request
-
+      const parsedUrl = new URL(request.url, `http://localhost:${port}`)
+      
       // Parse URL with regex pattern '/parameter/message'
-      const urlMatch = url.match(/^\/([^\/]+)\/([^\/]+)$/)
+      const urlMatch = parsedUrl.pathname.match(/^\/([^\/]+)\/([^\/]+)$/)
       if (!urlMatch) return notFound(response)
 
       const parameter = urlMatch[1]
       const message = urlMatch[2]
 
-      const answer = await socket.send([parameter], message)
+      // Handle amount parameter for increment/decrement operations
+      let params = [parameter]
+      if (message === 'increment' || message === 'decrement') {
+        const amount = parsedUrl.searchParams.get('amount')
+        if (amount !== null) {
+          const amountValue = parseFloat(amount)
+          if (!isNaN(amountValue)) {
+            params = [parameter, amountValue]
+          }
+        }
+      }
+
+      const answer = await socket.send(params, message)
       if (!answer.success) {
         return internalServerError(response, answer)
       }

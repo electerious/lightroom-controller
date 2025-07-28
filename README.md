@@ -56,22 +56,22 @@ You should now see a Lightroom dialog asking you to allow the connection from th
 
 ### 4. Send requests
 
-You can now send HTTP requests to control Lightroom. For example, to adjust the exposure:
+You can now send HTTP requests to control Lightroom. For example, to increment the exposure:
 
 ```bash
 curl http://localhost:3000/Exposure2012/increment
 ```
 
-To adjust the exposure by a specific amount:
+To increment the exposure by a specific amount:
 
 ```bash
 curl http://localhost:3000/Exposure2012/increment?amount=0.5
 ```
 
-To adjust the contrast:
+To reduce the contrast:
 
 ```bash
-curl http://localhost:3000/Contrast2012/increment
+curl http://localhost:3000/Contrast2012/decrement
 ```
 
 ## API

@@ -62,6 +62,12 @@ You can now send HTTP requests to control Lightroom. For example, to adjust the 
 curl http://localhost:3000/Exposure2012/increment
 ```
 
+To adjust the exposure by a specific amount:
+
+```bash
+curl http://localhost:3000/Exposure2012/increment?amount=0.5
+```
+
 To adjust the contrast:
 
 ```bash
@@ -72,6 +78,7 @@ curl http://localhost:3000/Contrast2012/increment
 
 ```
 GET /{command}/{action}
+GET /{command}/{action}?amount={value}
 ```
 
 ### Commands
@@ -86,6 +93,12 @@ Available actions for each command. The name of the action is passed to Lightroo
 
 - `increment`: Increases the value of the command by a small amount.
 - `decrement`: Decreases the value of the command by a small amount.
+
+### Parameters
+
+For `increment` and `decrement` actions, you can optionally specify an `amount` parameter to control the adjustment value:
+
+- `amount` (optional): A numeric value to specify the increment/decrement amount. If omitted, Lightroom uses its default increment value.
 
 ## Options
 

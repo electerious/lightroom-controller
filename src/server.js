@@ -27,7 +27,7 @@ const createHttpServer = (port) => (socket) => {
   const server = createServer(async (request, response) => {
     try {
       const parsedUrl = new URL(request.url, `http://localhost:${port}`)
-      
+
       // Parse URL with regex pattern '/parameter/message'
       const urlMatch = parsedUrl.pathname.match(/^\/([^\/]+)\/([^\/]+)$/)
       if (!urlMatch) return notFound(response)
@@ -35,15 +35,18 @@ const createHttpServer = (port) => (socket) => {
       const parameter = urlMatch[1]
       const message = urlMatch[2]
 
-      // Handle amount parameter for increment/decrement operations
       let params = [parameter]
-      if (message === 'increment' || message === 'decrement') {
-        const amount = parsedUrl.searchParams.get('amount')
-        if (amount !== null) {
-          const amountValue = parseFloat(amount)
-          if (!isNaN(amountValue)) {
-            params = [parameter, amountValue]
+
+      switch (message) {
+        case 'increment':
+        case 'decrement': {
+          const amount = parsedUrl.searchParams.get('amount')
+          const parsedAmount = parseFloat(amount)
+
+          if (!isNaN(parsedAmount)) {
+            params = [parameter, parsedAmount]
           }
+          break
         }
       }
 

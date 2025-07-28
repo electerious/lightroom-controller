@@ -1,6 +1,6 @@
 {
   "name": "lightroom-controller",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Control Adobe Lightroom CC using HTTP requests by using the Lightroom External Controller API",
   "keywords": [
     "lightroom",

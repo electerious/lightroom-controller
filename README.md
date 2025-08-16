@@ -74,27 +74,47 @@ To reduce the contrast:
 curl http://localhost:3000/Contrast2012/decrement
 ```
 
+To advance to the next photo:
+
+```bash
+curl http://localhost:3000/null/nextPhoto
+```
+
 ## API
 
 ```
-GET /{command}/{action}
-GET /{command}/{action}?amount={value}
+GET /{parameter}/{action}
+GET /{parameter}/{action}?amount={value}
 ```
 
-### Commands
+### Adjustable Parameters
 
-Commands for controlling Lightroom. The names are based on the weird names used by the Lightroom External Controller API, which are not very intuitive tbh. Not all commands are tested, but most of them should work as expected. The name of the command is passed to Lightroom no matter if known or unknown.
+Adjustable parameters for controlling Lightroom. The names are based on the weird names used by the Lightroom External Controller API, which are not very intuitive tbh. Not all parameters are tested, but most of them should work as expected. The parameter name is passed to Lightroom no matter if known or unknown.
 
 `AutoGrayscaleMix`, `AutoLateralCA`, `Blacks2012`, `BlueHue`, `BlueSaturation`, `CameraProfile`, `Clarity2012`, `ColorGradeBlending`, `ColorNoiseReduction`, `ColorNoiseReductionDetail`, `ColorNoiseReductionSmoothness`, `Contrast2012`, `CorrectionAmount`, `CurveRefineSaturation`, `DefringeGreenAmount`, `DefringePurpleAmount`, `Dehaze`, `DepthCorrectionAmount`, `DepthSource`, `EnhanceDenoise`, `EnhanceDenoiseAmount`, `EnhanceRawDetails`, `EnhanceSuperResolution`, `Exposure2012`, `GrainAmount`, `GrainFrequency`, `GrainSize`, `GrayMixerAqua`, `GrayMixerBlue`, `GrayMixerGreen`, `GrayMixerMagenta`, `GrayMixerOrange`, `GrayMixerPurple`, `GrayMixerRed`, `GrayMixerYellow`, `GreenHue`, `GreenSaturation`, `HDREditMode`, `HDRMaxValue`, `Highlights2012`, `HueAdjustmentAqua`, `HueAdjustmentBlue`, `HueAdjustmentGreen`, `HueAdjustmentMagenta`, `HueAdjustmentOrange`, `HueAdjustmentPurple`, `HueAdjustmentRed`, `HueAdjustmentYellow`, `LensBlur.Active`, `LensBlur.BlurAmount`, `LensBlur.CatEyeAmount`, `LensBlur.HighlightsBoost`, `LensBlur.ShowOverlay`, `LensProfileDistortionScale`, `LensProfileEnable`, `LensProfileVignettingScale`, `LocalBlacks2012`, `LocalClarity2012`, `LocalContrast2012`, `LocalCurveRefineSaturation`, `LocalDefringe`, `LocalDehaze`, `LocalExposure2012`, `LocalGrain`, `LocalHighlights2012`, `LocalLuminanceNoise`, `LocalMoire`, `LocalSaturation`, `LocalShadows2012`, `LocalSharpness`, `LocalTemperature`, `LocalTexture`, `LocalTint`, `LocalWhites2012`, `Look.Amount`, `LuminanceAdjustmentAqua`, `LuminanceAdjustmentBlue`, `LuminanceAdjustmentGreen`, `LuminanceAdjustmentMagenta`, `LuminanceAdjustmentOrange`, `LuminanceAdjustmentPurple`, `LuminanceAdjustmentRed`, `LuminanceAdjustmentYellow`, `LuminanceNoiseReductionContrast`, `LuminanceNoiseReductionDetail`, `LuminanceSmoothing`, `OverrideLookVignette`, `PerspectiveUpright`, `PointColorHueShift`, `PointColorLumScale`, `PointColorRangeAmount`, `PointColorSatScale`, `PointColorVisualizeRange`, `PostCropVignetteAmount`, `PostCropVignetteFeather`, `PostCropVignetteHighlightContrast`, `PostCropVignetteMidpoint`, `PostCropVignetteRoundness`, `RedHue`, `RedSaturation`, `SDRBlend`, `SDRBrightness`, `SDRClarity`, `SDRContrast`, `SDRHighlights`, `SDRShadows`, `SDRWhites`, `Saturation`, `SaturationAdjustmentAqua`, `SaturationAdjustmentBlue`, `SaturationAdjustmentGreen`, `SaturationAdjustmentMagenta`, `SaturationAdjustmentOrange`, `SaturationAdjustmentPurple`, `SaturationAdjustmentRed`, `SaturationAdjustmentYellow`, `ShadowTint`, `Shadows2012`, `SharpenDetail`, `SharpenEdgeMasking`, `SharpenRadius`, `Sharpness`, `SplitToningBalance`, `Temperature`, `Texture`, `Tint`, `Vibrance`, `WhiteBalance`, `Whites2012`, `cropBottom`, `cropLeft`, `cropRight`, `cropTop`, `previewForSDRDisplay`, `straightenAngle`, `visualizeHDRRanges`
 
 ### Actions
 
-Available actions for each command. The name of the action is passed to Lightroom no matter if known or unknown.
+#### Adjustable Parameter Actions
 
-- `increment`: Increases the value of the command by a small amount.
-- `decrement`: Decreases the value of the command by a small amount.
+Available actions for each parameter. The name of the action is passed to Lightroom no matter if known or unknown.
 
-### Parameters
+- `increment`: Increases the value of the parameter by a small amount.
+- `decrement`: Decreases the value of the parameter by a small amount.
+
+#### Navigation and Utility Actions
+
+For navigation and utility actions, use a `null` parameter with specific action names:
+
+`copyEditSettings`, `editInPhotoshop`, `exportWithPrevious`, `flagDecrease`, `flagIncrease`, `nextPhoto`, `openExport`, `pasteEditSettings`, `previousPhoto`, `ratingDecrease`, `ratingIncrease`, `resetAllDevelopAdjustments`, `rotateLeft`, `rotateRight`, `showCopyEditSettings`, `zoomInSome`, `zoomOutSome`, `zoomToFill`, `zoomToFit`, `zoomToOneToOne`, `toggleZoom`
+
+```bash
+curl http://localhost:3000/null/nextPhoto
+curl http://localhost:3000/null/zoomToFit
+curl http://localhost:3000/null/resetAllDevelopAdjustments
+```
+
+### URL Search Parameters
 
 For `increment` and `decrement` actions, you can optionally specify an `amount` parameter to control the adjustment value:
 
@@ -165,3 +185,45 @@ You can use `lightroom-controller` with [Karabiner-Elements](https://karabiner-e
   ]
 }
 ```
+
+
+### AutoHotkey
+
+`lightroom-controller` will also work with [AutoHotkey](https://www.autohotkey.com/) to control Lightroom using keyboard shortcuts. Here's an example with similar actionality to the prior example:
+
+```autohotkey
+#Requires AutoHotkey v2.0
+
+DEBUG_TOOLTIPS := true      ; show the request being sent in a minimal popup
+TOOLTIP_TIME   := 2000      ; amount of time in ms that the popup will linger
+
+SendHTTPRequest(url) {
+    try {
+        http := ComObject("WinHttp.WinHttpRequest.5.1")
+        http.Open("GET", url, false)
+        http.Send()
+        
+        if DEBUG_TOOLTIPS{
+            ToolTip("API: " . url . " | Status: " . http.Status, 10, 10)
+            SetTimer(() => ToolTip(), -TOOLTIP_TIME) 
+        }
+    } catch Error as e {
+        ToolTip("HTTP Error: " . e.Message, 10, 10)
+        SetTimer(() => ToolTip(), -TOOLTIP_TIME)
+    }
+}
+
+; Map F1 to increment exposure
+F1::SendHTTPRequest("http://localhost:3000/Exposure2012/increment")
+
+; Map F2 to decrement exposure
+F2::SendHTTPRequest("http://localhost:3000/Exposure2012/decrement")
+```
+
+
+## Known Issues
+
+### Crop Parameters (Lightroom CC 8.4 on Windows)
+
+
+- **`increment` and `decrement` do not work** on crop parameters (`cropTop`, `cropLeft`, `cropBottom`, `cropRight`). This appears to be a limitation of Adobe's current controller API

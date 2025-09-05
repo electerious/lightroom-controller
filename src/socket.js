@@ -1,4 +1,5 @@
-import { randomUUID } from 'crypto'
+import { randomUUID } from 'node:crypto'
+// eslint-disable-next-line import-x/no-named-as-default
 import WebSocket from 'ws'
 import packageInfo from '../package.json' with { type: 'json' }
 
@@ -6,19 +7,24 @@ const appName = packageInfo.name
 const appVersion = packageInfo.version
 const optionalClientGUID = 'f5d10cb7-261d-48c2-a0db-1c9791990a34'
 
-const createSocket = (url) => {
-  const { promise, resolve, reject } = Promise.withResolvers()
-
-  let listeners = new Map()
-
-  const createRequest = (params, message) => {
-    return {
-      requestId: randomUUID(),
-      object: null,
-      params,
-      message,
-    }
+const createRequest = (parameters, message) => {
+  return {
+    requestId: randomUUID(),
+    object: null,
+    params: parameters,
+    message,
   }
+}
+
+const createSocket = (url) => {
+  let resolve
+  let reject
+  const promise = new Promise((res, rej) => {
+    resolve = res
+    reject = rej
+  })
+
+  const listeners = new Map()
 
   const addListener = (requestId, resolve, reject, timeout = 5000) => {
     listeners.set(requestId, { resolve, reject })
@@ -36,8 +42,8 @@ const createSocket = (url) => {
     listeners.delete(requestId)
   }
 
-  const send = (params, message, timeout) => {
-    const request = createRequest(params, message)
+  const send = (parameters, message, timeout) => {
+    const request = createRequest(parameters, message)
     const { requestId } = request
 
     return new Promise((resolve, reject) => {
@@ -66,9 +72,9 @@ const createSocket = (url) => {
 
   ws.on('message', (data) => {
     const answer = JSON.parse(data)
-    const { requestId } = answer
+    const { requestId, message } = answer
 
-    if (answer.message === 'close') {
+    if (message === 'close') {
       ws.close()
 
       return
@@ -84,7 +90,7 @@ const createSocket = (url) => {
 
   ws.on('close', () => {
     console.log('Connection closed by Lightroom')
-    process.exit(0)
+    throw new Error('Lightroom connection closed')
   })
 
   ws.on('error', (error) => {

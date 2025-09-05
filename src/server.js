@@ -1,5 +1,5 @@
-import { createServer } from 'http'
-import { URL } from 'url'
+import { createServer } from 'node:http'
+import { URL } from 'node:url'
 
 const ok = (response, data) => {
   response.writeHead(200, { 'Content-Type': 'application/json' })
@@ -35,22 +35,22 @@ const createHttpServer = (port) => (socket) => {
       const parameter = urlMatch[1]
       const message = urlMatch[2]
 
-      let params = [parameter]
+      let parameters = [parameter]
 
       switch (message) {
         case 'increment':
         case 'decrement': {
           const amount = parsedUrl.searchParams.get('amount')
-          const parsedAmount = parseFloat(amount)
+          const parsedAmount = Number.parseFloat(amount)
 
           if (!isNaN(parsedAmount)) {
-            params = [parameter, parsedAmount]
+            parameters = [parameter, parsedAmount]
           }
           break
         }
       }
 
-      const answer = await socket.send(params, message)
+      const answer = await socket.send(parameters, message)
       if (!answer.success) {
         return internalServerError(response, answer)
       }

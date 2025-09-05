@@ -1,4 +1,4 @@
-import { randomUUID } from 'crypto'
+import { randomUUID } from 'node:crypto'
 import WebSocket from 'ws'
 import packageInfo from '../package.json' with { type: 'json' }
 
@@ -9,13 +9,13 @@ const optionalClientGUID = 'f5d10cb7-261d-48c2-a0db-1c9791990a34'
 const createSocket = (url) => {
   const { promise, resolve, reject } = Promise.withResolvers()
 
-  let listeners = new Map()
+  const listeners = new Map()
 
-  const createRequest = (params, message) => {
+  const createRequest = (parameters, message) => {
     return {
       requestId: randomUUID(),
       object: null,
-      params,
+      params: parameters,
       message,
     }
   }
@@ -36,8 +36,8 @@ const createSocket = (url) => {
     listeners.delete(requestId)
   }
 
-  const send = (params, message, timeout) => {
-    const request = createRequest(params, message)
+  const send = (parameters, message, timeout) => {
+    const request = createRequest(parameters, message)
     const { requestId } = request
 
     return new Promise((resolve, reject) => {

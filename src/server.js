@@ -11,25 +11,25 @@ const notFound = (response) => {
   response.end(JSON.stringify({ status: 'not found' }))
 }
 
-const unavailable = (response, error) => {
-  response.writeHead(503, { 'Content-Type': 'application/json' })
-  response.end(JSON.stringify({ status: 'service unavailable', data: error }))
-}
-
 const internalServerError = (response, error) => {
   response.writeHead(500, { 'Content-Type': 'application/json' })
   response.end(JSON.stringify({ status: 'internal server error', data: error }))
 }
 
 const createHttpServer = (port) => (socket) => {
-  const { promise, resolve, reject } = Promise.withResolvers()
+  let resolve
+  let reject
+  const promise = new Promise((res, rej) => {
+    resolve = res
+    reject = rej
+  })
 
   const server = createServer(async (request, response) => {
     try {
       const parsedUrl = new URL(request.url, `http://localhost:${port}`)
 
       // Parse URL with regex pattern '/parameter/message'
-      const urlMatch = parsedUrl.pathname.match(/^\/([^\/]+)\/([^\/]+)$/)
+      const urlMatch = parsedUrl.pathname.match(/^\/([^/]+)\/([^/]+)$/)
       if (!urlMatch) return notFound(response)
 
       const parameter = urlMatch[1]
@@ -43,9 +43,13 @@ const createHttpServer = (port) => (socket) => {
           const amount = parsedUrl.searchParams.get('amount')
           const parsedAmount = Number.parseFloat(amount)
 
-          if (!isNaN(parsedAmount)) {
+          if (!Number.isNaN(parsedAmount)) {
             parameters = [parameter, parsedAmount]
           }
+          break
+        }
+        default: {
+          // No additional parameters needed for other messages
           break
         }
       }

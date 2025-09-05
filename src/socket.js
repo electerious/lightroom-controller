@@ -1,4 +1,5 @@
 import { randomUUID } from 'node:crypto'
+// eslint-disable-next-line import-x/no-named-as-default
 import WebSocket from 'ws'
 import packageInfo from '../package.json' with { type: 'json' }
 
@@ -6,19 +7,24 @@ const appName = packageInfo.name
 const appVersion = packageInfo.version
 const optionalClientGUID = 'f5d10cb7-261d-48c2-a0db-1c9791990a34'
 
+const createRequest = (parameters, message) => {
+  return {
+    requestId: randomUUID(),
+    object: null,
+    params: parameters,
+    message,
+  }
+}
+
 const createSocket = (url) => {
-  const { promise, resolve, reject } = Promise.withResolvers()
+  let resolve
+  let reject
+  const promise = new Promise((res, rej) => {
+    resolve = res
+    reject = rej
+  })
 
   const listeners = new Map()
-
-  const createRequest = (parameters, message) => {
-    return {
-      requestId: randomUUID(),
-      object: null,
-      params: parameters,
-      message,
-    }
-  }
 
   const addListener = (requestId, resolve, reject, timeout = 5000) => {
     listeners.set(requestId, { resolve, reject })
@@ -66,9 +72,9 @@ const createSocket = (url) => {
 
   ws.on('message', (data) => {
     const answer = JSON.parse(data)
-    const { requestId } = answer
+    const { requestId, message } = answer
 
-    if (answer.message === 'close') {
+    if (message === 'close') {
       ws.close()
 
       return
@@ -84,7 +90,7 @@ const createSocket = (url) => {
 
   ws.on('close', () => {
     console.log('Connection closed by Lightroom')
-    process.exit(0)
+    throw new Error('Lightroom connection closed')
   })
 
   ws.on('error', (error) => {

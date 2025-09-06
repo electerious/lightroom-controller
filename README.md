@@ -6,8 +6,6 @@ Control Adobe Lightroom CC using HTTP requests by using the Lightroom External C
 
 ![lightroom-controller](https://github.com/user-attachments/assets/a0fdfe43-35a3-413e-8f77-d0616fcf923d)
 
-> ⚠️ This project is still in development and may not work as expected. Use at your own risk!
-
 > 💡 This project is not affiliated with Adobe Systems Incorporated in any way. It is an independent tool that utilizes the Lightroom External Controller API to provide a simple interface for controlling Lightroom CC.
 
 ## Contents
@@ -18,7 +16,6 @@ Control Adobe Lightroom CC using HTTP requests by using the Lightroom External C
 - [API](#api)
 - [Options](#options)
 - [Examples](#examples)
-  - [Karabiner-Elements](#karabiner-elements)
 
 ## Description
 
@@ -186,7 +183,6 @@ You can use `lightroom-controller` with [Karabiner-Elements](https://karabiner-e
 }
 ```
 
-
 ### AutoHotkey
 
 `lightroom-controller` will also work with [AutoHotkey](https://www.autohotkey.com/) to control Lightroom using keyboard shortcuts. Here's an example with similar actionality to the prior example:
@@ -202,10 +198,10 @@ SendHTTPRequest(url) {
         http := ComObject("WinHttp.WinHttpRequest.5.1")
         http.Open("GET", url, false)
         http.Send()
-        
+
         if DEBUG_TOOLTIPS{
             ToolTip("API: " . url . " | Status: " . http.Status, 10, 10)
-            SetTimer(() => ToolTip(), -TOOLTIP_TIME) 
+            SetTimer(() => ToolTip(), -TOOLTIP_TIME)
         }
     } catch Error as e {
         ToolTip("HTTP Error: " . e.Message, 10, 10)
@@ -220,10 +216,8 @@ F1::SendHTTPRequest("http://localhost:3000/Exposure2012/increment")
 F2::SendHTTPRequest("http://localhost:3000/Exposure2012/decrement")
 ```
 
-
 ## Known Issues
 
 ### Crop Parameters (Lightroom CC 8.4 on Windows)
-
 
 - **`increment` and `decrement` do not work** on crop parameters (`cropTop`, `cropLeft`, `cropBottom`, `cropRight`). This appears to be a limitation of Adobe's current controller API

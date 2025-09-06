@@ -1,3 +1,4 @@
+import getPort from 'get-port'
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
 import createHttpServer from '../src/server.js'
@@ -7,7 +8,7 @@ test('createHttpServer creates a server and returns a promise', async () => {
     send: () => ({ success: true, data: 'test-response' }),
   }
 
-  const port = 0 // Use random available port
+  const port = await getPort() // Use get-port to find available port
   const server = await createHttpServer(port)(mockSocket)
 
   assert.ok(server, 'Server should be created')
@@ -23,7 +24,7 @@ test('server handles valid URL pattern /parameter/message', async () => {
     send: (parameters, message) => Promise.resolve({ success: true, data: { parameters, message } }),
   }
 
-  const port = 0
+  const port = await getPort()
   const server = await createHttpServer(port)(mockSocket)
   const address = server.address()
 
@@ -44,7 +45,7 @@ test('server handles increment/decrement with amount parameter', async () => {
     send: (parameters, message) => Promise.resolve({ success: true, data: { parameters, message } }),
   }
 
-  const port = 0
+  const port = await getPort()
   const server = await createHttpServer(port)(mockSocket)
   const address = server.address()
 
@@ -65,7 +66,7 @@ test('server returns 404 for invalid URL pattern', async () => {
     send: () => ({ success: true, data: 'test' }),
   }
 
-  const port = 0
+  const port = await getPort()
   const server = await createHttpServer(port)(mockSocket)
   const address = server.address()
 
@@ -84,7 +85,7 @@ test('server returns 500 when socket send fails', async () => {
     send: () => Promise.resolve({ success: false, error: 'Socket error' }),
   }
 
-  const port = 0
+  const port = await getPort()
   const server = await createHttpServer(port)(mockSocket)
   const address = server.address()
 
@@ -102,7 +103,7 @@ test('server handles invalid amount parameter gracefully', async () => {
     send: (parameters, message) => Promise.resolve({ success: true, data: { parameters, message } }),
   }
 
-  const port = 0
+  const port = await getPort()
   const server = await createHttpServer(port)(mockSocket)
   const address = server.address()
 

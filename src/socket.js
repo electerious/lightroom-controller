@@ -1,6 +1,5 @@
 import { randomUUID } from 'node:crypto'
-// eslint-disable-next-line import-x/no-named-as-default
-import WebSocket from 'ws'
+import { WebSocket } from 'ws'
 import packageInfo from '../package.json' with { type: 'json' }
 
 const appName = packageInfo.name
@@ -17,12 +16,7 @@ const createRequest = (parameters, message) => {
 }
 
 const createSocket = (url) => {
-  let resolve
-  let reject
-  const promise = new Promise((res, rej) => {
-    resolve = res
-    reject = rej
-  })
+  const { promise, resolve, reject } = Promise.withResolvers()
 
   const listeners = new Map()
 

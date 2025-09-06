@@ -17,12 +17,7 @@ const internalServerError = (response, error) => {
 }
 
 const createHttpServer = (port) => (socket) => {
-  let resolve
-  let reject
-  const promise = new Promise((res, rej) => {
-    resolve = res
-    reject = rej
-  })
+  const { promise, resolve, reject } = Promise.withResolvers()
 
   const server = createServer(async (request, response) => {
     try {
@@ -49,7 +44,7 @@ const createHttpServer = (port) => (socket) => {
           break
         }
         default: {
-          // No additional parameters needed for other messages
+          // No additional parameters
           break
         }
       }

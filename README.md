@@ -1,6 +1,6 @@
 # lightroom-controller
 
-![Build](https://github.com/electerious/lightroom-controller/workflows/Build/badge.svg)
+[![Test](https://github.com/electerious/lightroom-controller/actions/workflows/test.yml/badge.svg)](https://github.com/electerious/lightroom-controller/actions/workflows/test.yml)
 
 Control Adobe Lightroom CC using HTTP requests by using the Lightroom External Controller API.
 

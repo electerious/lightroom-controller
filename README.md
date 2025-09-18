@@ -16,6 +16,7 @@ Control Adobe Lightroom CC using HTTP requests by using the Lightroom External C
 - [API](#api)
 - [Options](#options)
 - [Examples](#examples)
+- [Miscellaneous](#miscellaneous)
 
 ## Description
 
@@ -216,8 +217,23 @@ F1::SendHTTPRequest("http://localhost:3000/Exposure2012/increment")
 F2::SendHTTPRequest("http://localhost:3000/Exposure2012/decrement")
 ```
 
-## Known Issues
+## Miscellaneous
 
-### Crop Parameters (Lightroom CC 8.4 on Windows)
+### Known Issues
 
-- **`increment` and `decrement` do not work** on crop parameters (`cropTop`, `cropLeft`, `cropBottom`, `cropRight`). This appears to be a limitation of Adobe's current controller API
+#### Crop Parameters
+
+- **`increment` and `decrement` do not work** on crop parameters (`cropTop`, `cropLeft`, `cropBottom`, `cropRight`). This appears to be a limitation of Adobe's current controller API and effects at least Lightroom CC 8.4 on Windows.
+
+### Donate
+
+I am working hard on continuously developing and maintaining my projects. Please consider making a donation to keep the project going strong and me motivated.
+
+- [Become a GitHub sponsor](https://github.com/sponsors/electerious)
+- [Donate via PayPal](https://paypal.me/electerious)
+- [Buy me a coffee](https://www.buymeacoffee.com/electerious)
+
+### Links
+
+- [Follow me on Bluesky](https://bsky.app/profile/electerious.bsky.social)
+- [Follow me on Threads](https://www.threads.com/@electerious)

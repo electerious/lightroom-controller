@@ -30,15 +30,15 @@
     "test": "npm run lint && node --test"
   },
   "dependencies": {
-    "commander": "^14.0.0",
-    "ws": "^8.18.0"
+    "commander": "^14.0.2",
+    "ws": "^8.18.3"
   },
   "devDependencies": {
-    "@electerious/eslint-config": "^5.2.0",
+    "@electerious/eslint-config": "^5.2.1",
     "@electerious/prettier-config": "^4.0.0",
-    "eslint": "^9.34.0",
+    "eslint": "^9.39.2",
     "get-port": "^7.1.0",
-    "prettier": "^3.6.2"
+    "prettier": "^3.7.4"
   },
   "authors": [
     "Tobias Reich <tobias@electerious.com>"

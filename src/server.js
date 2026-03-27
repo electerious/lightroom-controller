@@ -1,5 +1,4 @@
 import { createServer } from 'node:http'
-import { URL } from 'node:url'
 
 const ok = (response, data) => {
   response.writeHead(200, { 'Content-Type': 'application/json' })

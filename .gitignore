@@ -25,3 +25,6 @@
 **/yarn-error.log
 **/node_modules
 **/yarn.lock
+
+# Environment files
+**/.env

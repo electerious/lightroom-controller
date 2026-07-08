@@ -50,6 +50,12 @@ Start the controller by running the following command in your terminal:
 npx lightroom-controller
 ```
 
+If you need a custom configuration, you can create a `.env` file in the current working directory. There's also a command to help you with that:
+
+```bash
+npx lightroom-controller init
+```
+
 You should now see a Lightroom dialog asking you to allow the connection from the external controller. Click "Pair" to grant access.
 
 ### 4. Send requests
@@ -120,7 +126,13 @@ For `increment` and `decrement` actions, you can optionally specify an `amount` 
 
 ## Options
 
-`lightroom-controller` can be configured using environment variables.
+`lightroom-controller` can be configured using environment variables or a `.env` file.
+
+The following command guides you through the available options interactively and creates a `.env` file in the current working directory for you:
+
+```bash
+npx lightroom-controller init
+```
 
 ### Port
 

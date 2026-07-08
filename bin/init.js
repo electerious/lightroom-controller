@@ -27,7 +27,7 @@ const questions = [
   },
 ]
 
-export const init = async () => {
+export const init = async (configPath) => {
   const values = await prompts(questions)
 
   const env = `
@@ -35,7 +35,7 @@ LIGHTROOM_WS_URL=${values.lightroom_ws_url ?? ''}
 PORT=${values.port ?? ''}
 `.trim()
 
-  const filePath = path.resolve(process.cwd(), '.env')
+  const filePath = path.resolve(process.cwd(), configPath || '.env')
 
   fs.writeFileSync(filePath, env, { encoding: 'utf8' })
   console.log(`File with environment variables created at '${filePath}'`)

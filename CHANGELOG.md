@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 ### Added
 
 - `init` command to interactively create a `.env` file
+- `--config` option to specify a custom `.env` file path
 
 ## [1.2.0] - 2025-09-06
 

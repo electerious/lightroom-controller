@@ -126,12 +126,20 @@ For `increment` and `decrement` actions, you can optionally specify an `amount` 
 
 ## Options
 
-`lightroom-controller` can be configured using environment variables or a `.env` file.
+`lightroom-controller` can be configured using environment variables, a `.env` file, or CLI options.
 
 The following command guides you through the available options interactively and creates a `.env` file in the current working directory for you:
 
 ```bash
 npx lightroom-controller init
+```
+
+### Config File
+
+Specify a custom `.env` file path with the `--config` option:
+
+```bash
+npx lightroom-controller --config /path/to/.env.production
 ```
 
 ### Port

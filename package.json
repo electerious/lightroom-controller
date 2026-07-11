@@ -1,7 +1,7 @@
 {
   "name": "lightroom-controller",
   "version": "1.2.0",
-  "description": "Control Adobe Lightroom using HTTP requests by using the Lightroom External Controller API",
+  "description": "Control Adobe Lightroom using HTTP requests",
   "keywords": [
     "lightroom",
     "creative-cloud",

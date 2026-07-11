@@ -110,7 +110,7 @@ Available actions for each parameter. The name of the action is passed to Lightr
 
 For navigation and utility actions, use a `null` parameter with specific action names:
 
-`copyEditSettings`, `editInPhotoshop`, `exportWithPrevious`, `flagDecrease`, `flagIncrease`, `nextPhoto`, `openExport`, `pasteEditSettings`, `previousPhoto`, `ratingDecrease`, `ratingIncrease`, `resetAllDevelopAdjustments`, `rotateLeft`, `rotateRight`, `showCopyEditSettings`, `zoomInSome`, `zoomOutSome`, `zoomToFill`, `zoomToFit`, `zoomToOneToOne`, `toggleZoom`
+`colorLabelBlue`, `colorLabelGreen`, `colorLabelNone`, `colorLabelPurple`, `colorLabelRed`, `colorLabelYellow`, `copyEditSettings`, `duplicatePhoto`, `editInPhotoshop`, `exportWithPrevious`, `flagDecrease`, `flagIncrease`, `flagPick`, `flagPickToggle`, `flagReject`, `flagRejectToggle`, `flagUnflag`, `flipHorizontal`, `flipVertical`, `goBack`, `goForward`, `nextPhoto`, `openExport`, `pasteEditSettings`, `previousPhoto`, `rating0`, `rating1`, `rating2`, `rating3`, `rating4`, `rating5`, `ratingDecrease`, `ratingIncrease`, `redo`, `resetAllDevelopAdjustments`, `resetCrop`, `resetToDefault`, `resetToOpen`, `rotateLeft`, `rotateRight`, `selectAll`, `selectNone`, `setAutoTone`, `showClipping`, `showCopyEditSettings`, `toggleBeforeAfter`, `toggleBlackAndWhite`, `toggleHDR`, `toggleZoom`, `undo`, `zoomIn`, `zoomInSome`, `zoomOut`, `zoomOutSome`, `zoomToFill`, `zoomToFit`, `zoomToOneToOne`
 
 ```bash
 curl http://localhost:3000/null/nextPhoto

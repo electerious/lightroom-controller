@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 - `init` command to interactively create a `.env` file
 - `--config` option to specify a custom `.env` file path
+- Full list of documented API actions in README: color labels, ratings, flags, zoom variants, rotate/flip, undo/redo, and more
 
 ## [1.2.0] - 2025-09-06
 

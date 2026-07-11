@@ -2,7 +2,7 @@
 
 [![Test](https://github.com/electerious/lightroom-controller/actions/workflows/test.yml/badge.svg)](https://github.com/electerious/lightroom-controller/actions/workflows/test.yml)
 
-Control Adobe Lightroom CC using HTTP requests by using the Lightroom External Controller API.
+Control Adobe Lightroom using HTTP requests by using the Lightroom External Controller API.
 
 ![lightroom-controller](https://github.com/user-attachments/assets/a0fdfe43-35a3-413e-8f77-d0616fcf923d)
 
@@ -20,7 +20,7 @@ Control Adobe Lightroom CC using HTTP requests by using the Lightroom External C
 
 ## Description
 
-`lightroom-controller` is a simple CLI that acts as a bridge between external tools and Adobe Lightroom CC. It allows you to control Lightroom's sliders and settings using simple HTTP requests, making it compatible with various tools like Karabiner-Elements, Automator, or custom scripts.
+`lightroom-controller` is a simple CLI that acts as a bridge between external tools and Adobe Lightroom. It allows you to control Lightroom's sliders and settings using simple HTTP requests, making it compatible with various tools like Karabiner-Elements, Automator, or custom scripts.
 
 The tool listens for incoming HTTP requests and translates them into actions within Lightroom. This happens through the Lightroom External Controller API, which must be enabled in Lightroom CC.
 
@@ -28,7 +28,7 @@ Using the External Controller API without `lightroom-controller` would require a
 
 ## Requirements
 
-- Adobe Lightroom CC (v8.4 or newer)
+- Adobe Lightroom (v8.4 or newer)
 - [Node.js](https://nodejs.org/en/) (v22 or newer)
 - [npm](https://npmjs.com) (v10 or newer)
 
@@ -36,7 +36,7 @@ Using the External Controller API without `lightroom-controller` would require a
 
 ### 1. Start Lightroom CC
 
-Launch Adobe Lightroom CC on your computer.
+Launch Adobe Lightroom on your computer.
 
 ### 2. Enable the External Controller API
 

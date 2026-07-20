@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [1.3.0] - 2026-07-11
 
@@ -14,7 +14,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/) a
 
 ## [1.2.0] - 2025-09-06
 
-General code improvements and refactoring.
+### Changed
+
+- General code improvements and refactoring
 
 ## [1.1.0] - 2025-07-28
 
@@ -24,4 +26,6 @@ General code improvements and refactoring.
 
 ## [1.0.0] - 2025-07-13
 
-Initial release.
+### Added
+
+- Initial release

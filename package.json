@@ -13,11 +13,13 @@
   "homepage": "https://github.com/electerious/lightroom-controller",
   "repository": {
     "type": "git",
-    "url": "https://github.com/electerious/lightroom-controller.git"
+    "url": "git+https://github.com/electerious/lightroom-controller.git"
   },
   "license": "MIT",
   "type": "module",
-  "bin": "./bin/index.js",
+  "bin": {
+    "lightroom-controller": "bin/index.js"
+  },
   "files": [
     "src"
   ],

@@ -246,6 +246,10 @@ F2::SendHTTPRequest("http://localhost:3000/Exposure2012/decrement")
 
 - **`increment` and `decrement` do not work** on crop parameters (`cropTop`, `cropLeft`, `cropBottom`, `cropRight`). This appears to be a limitation of Adobe's current controller API and effects at least Lightroom CC 8.4 on Windows.
 
+### Related
+
+- [lightroom-midi-controller](https://github.com/electerious/lightroom-midi-controller) - MIDI controller for Adobe Lightroom.
+
 ### Donate
 
 I am working hard on continuously developing and maintaining my projects. Please consider making a donation to keep the project going strong and me motivated.

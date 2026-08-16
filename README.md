@@ -244,7 +244,7 @@ F2::SendHTTPRequest("http://localhost:3000/Exposure2012/decrement")
 
 #### Crop Parameters
 
-- **`increment` and `decrement` do not work** on crop parameters (`cropTop`, `cropLeft`, `cropBottom`, `cropRight`). This appears to be a limitation of Adobe's current controller API and effects at least Lightroom CC 8.4 on Windows.
+- **`increment` and `decrement` do not work** on crop parameters (`cropTop`, `cropLeft`, `cropBottom`, `cropRight`). This appears to be a limitation of Adobe's current controller API and affects at least Lightroom CC 8.4 on Windows.
 
 ### Related
 

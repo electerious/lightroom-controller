@@ -29,7 +29,7 @@ Using the External Controller API without `lightroom-controller` would require a
 ## Requirements
 
 - Adobe Lightroom (v8.4 or newer)
-- [Node.js](https://nodejs.org/en/) (v22 or newer)
+- [Node.js](https://nodejs.org/en/) (v24.15.0 or newer)
 - [npm](https://npmjs.com) (v10 or newer)
 
 ## Usage

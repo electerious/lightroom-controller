@@ -21,6 +21,7 @@
     "lightroom-controller": "bin/index.js"
   },
   "files": [
+    "bin",
     "src"
   ],
   "scripts": {
@@ -32,16 +33,16 @@
     "test": "npm run lint && node --test"
   },
   "dependencies": {
-    "commander": "^14.0.2",
+    "commander": "^14.0.3",
     "prompts": "^2.4.2",
-    "ws": "^8.18.3"
+    "ws": "^8.21.3"
   },
   "devDependencies": {
     "@electerious/eslint-config": "^6.0.0-rc.3",
-    "@electerious/prettier-config": "^4.0.0",
+    "@electerious/prettier-config": "^4.0.2",
     "eslint": "^10.8.1",
-    "get-port": "^7.1.0",
-    "prettier": "^3.7.4"
+    "get-port": "^7.2.0",
+    "prettier": "^3.9.6"
   },
   "engines": {
     "node": ">=24.15.0"

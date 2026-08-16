@@ -35,7 +35,7 @@ const createHttpServer = (port) => (socket) => {
         case 'increment':
         case 'decrement': {
           const amount = parsedUrl.searchParams.get('amount')
-          const parsedAmount = Number.parseFloat(amount)
+          const parsedAmount = amount == null || amount.trim() === '' ? NaN : Number(amount)
 
           if (!Number.isNaN(parsedAmount)) {
             parameters = [parameter, parsedAmount]

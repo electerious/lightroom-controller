@@ -20,8 +20,8 @@ const questions = [
     message: 'HTTP server port',
     initial: '3000',
     validate: (input) => {
-      const num = Number.parseInt(input, 10)
-      if (Number.isInteger(num) && num > 0 && num <= 65535) return true
+      const port = Number(input)
+      if (Number.isSafeInteger(port) && port > 0 && port <= 65535) return true
       return 'Input must be a valid port number (1-65535)'
     },
   },

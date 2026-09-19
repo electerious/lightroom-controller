@@ -38,7 +38,7 @@
     "ws": "^8.21.3"
   },
   "devDependencies": {
-    "@electerious/eslint-config": "^6.0.0-rc.4",
+    "@electerious/eslint-config": "^6.0.0",
     "@electerious/prettier-config": "^5.0.0",
     "eslint": "^10.8.1",
     "get-port": "^7.2.0",
